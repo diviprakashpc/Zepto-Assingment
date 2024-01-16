@@ -1,0 +1,162 @@
+*{
+  box-sizing: border-box;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+}
+.App {
+  padding: 0rem 1.5rem;
+  width: 100%;
+}
+
+#top-heading{
+  color : blue;
+  text-align: center;
+}
+
+
+#bar{
+  width: 100%;
+  border-bottom: 2px solid blue;
+  height: 3rem;
+  padding: 0.5rem;
+  
+}
+
+#sub-bar{
+  background-color: white;
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+#logo{
+  justify-content: flex-start;
+  display: flex;
+  position: relative;
+  right: 2px;
+  align-items: center;
+  flex-grow: 0.3;
+}
+
+#name{
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 0.5;
+  font-weight: 600;
+}
+
+#cross{
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 0.2;
+  cursor: pointer;
+  font-weight: 500;
+  padding-top: 1.5px;
+}
+
+#chip{
+  height: 2rem;
+  display:flex;
+  flex-direction: row;
+  padding: 0.25rem 0.75rem 0.25rem 0.25rem;
+  width: 10rem;
+
+  background-color: rgb(201, 193, 193,0.4);
+  border-radius: 2rem;
+}
+
+#search-box-holder{
+  position: relative;
+  top: 8.95rem;
+  right: 11.3rem;
+}
+
+
+#search-box{
+  width: 25rem;
+  height: 15rem;
+  padding: 0.5rem 0.25rem;
+  overflow:auto;
+  background-color: white;
+  box-shadow: -2px 0px 5px 1px rgba(0,0,0,0.35);
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+ 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888888b5; 
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb8b8; 
+}
+
+
+#search-item{
+  height: 3rem;
+  border-bottom: 1px solid rgba(2, 0, 0, 0.095);
+  padding: 0.5rem 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+#item-logo{
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  right: 2px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#item-name{
+  display: flex;
+  flex-grow: 6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#item-mail{
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 5;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgb(0, 0, 0,0.4);
+}
+
+#invisible-input-box{
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+#invisible-input{
+  outline : none;
+  border:none;
+  font-weight: 500;
+  font-size:13px;
+}
