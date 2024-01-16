@@ -15,57 +15,72 @@ function App() {
       }, 1000)
     })
   }
-  const onClickCross = (id:number) => {
-    const user : any = (addedUsers && addedUsers?.find((user:IUser)=>user.id===id));
-    const newAddedUsers : IUser[] = addedUsers.filter((user:IUser)=>user.id!==id)
-    const newUsers : IUser[] = Users;
+  const onClickCross = (id: number) => {
+    const user: any = (addedUsers && addedUsers?.find((user: IUser) => user.id === id));
+    const newAddedUsers: IUser[] = addedUsers.filter((user: IUser) => user.id !== id)
+    const newUsers: IUser[] = Users;
     newUsers.push(user);
-    if(newAddedUsers){
+    if (newAddedUsers) {
       setAddedUsers(newAddedUsers)
       setUsers(newUsers)
       setFilteredUsers(newUsers)
     }
   }
-  const onClickItem = (id:number) => {
+  const onClickItem = (id: number) => {
 
-    const user : any | undefined = Users.find((user:IUser)=>user.id===id);
-    const newUsers : IUser[] = Users.filter((user:IUser)=>user.id!==id) 
-    const newAddedUsers:IUser[] = addedUsers;
+    const user: any | undefined = Users.find((user: IUser) => user.id === id);
+    const newUsers: IUser[] = Users.filter((user: IUser) => user.id !== id)
+    const newAddedUsers: IUser[] = addedUsers;
     newAddedUsers.push(user);
-    if(newUsers){
+    if (newUsers) {
       setAddedUsers(newAddedUsers)
       setUsers(newUsers)
       setFilteredUsers(newUsers)
     }
   }
-  const onChangeInput = (e:any) => {
+
+  const handleBackspace = (e:any)=>{
+    console.log(e)
+    if(e.which===8&&e.target.value===""&&addedUsers.length>0){
+      onClickCross(addedUsers[addedUsers.length-1].id)      
+    }
+  }
+  const onChangeInput = (e: any) => {
     e.preventDefault();
-    const {value} = e.currentTarget;
+    const { value } = e.currentTarget;
     let enteredValue = value.trim();
-    if(enteredValue!=="") {
-      const filteredArray = getFilteredArray(Users,value);
+    if (enteredValue !== "") {
+      const filteredArray = getFilteredArray(Users, value);
       setFilteredUsers(filteredArray)
-    }else{
+    } else {
       setFilteredUsers(Users)
     }
   }
   React.useEffect(() => {
-    fetchUsers().then((res:any) => {
+    fetchUsers().then((res: any) => {
       setUsers(res);
       setFilteredUsers(res);
     })
   }, [])
-  console.log(Users,addedUsers,filteredUsers);
+  console.log(Users, addedUsers, filteredUsers);
   return (
-    <div className="App">
-      <h1 id='top-heading'>Pick User</h1>
-      <SearchBar
-      onClickItem={onClickItem}
-      onClickCross = {onClickCross}
-      onChangeInput={onChangeInput} 
-      addedUsers={addedUsers} 
-      filteredUsers={filteredUsers}
-      users = {Users} />
+    <div className='App'>
+      <div className="main-con">
+        <h1 id='top-heading'>Pick User</h1>
+        <SearchBar
+          onClickItem={onClickItem}
+          onClickCross={onClickCross}
+          onChangeInput={onChangeInput}
+          addedUsers={addedUsers}
+          filteredUsers={filteredUsers}
+          handleBackspace = {handleBackspace}
+          users={Users} />
+      </div>
+      <div id='footer'>
+         <span><b>Name</b>: Divya Prakash</span>
+         <span><b>Github: </b> <a href='https://www.github.com/diviprakashpc'>diviprakashpc</a></span>
+         <span><b>Email: </b>diviprakash3@gmail.com</span>
+      </div>
     </div>
   );
 }

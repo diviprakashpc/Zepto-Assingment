@@ -3,52 +3,54 @@ import Chip from './Chip.tsx'
 import SearchBox from './SearchBox.tsx'
 import { IUser } from '../interfaces';
 
-interface ISearchBarProps{
-  onClickItem : Function;
-  onClickCross : Function;
+interface ISearchBarProps {
+  onClickItem: Function;
+  onClickCross: Function;
   onChangeInput: Function;
-  addedUsers : IUser[];
-  filteredUsers:IUser[];
-  users:IUser[];
+  handleBackspace : Function;
+  addedUsers: IUser[];
+  filteredUsers: IUser[];
+  users: IUser[];
 }
 
-const SearchBar = (props : ISearchBarProps) => {
-  const {onClickItem, onClickCross, onChangeInput, addedUsers:AddedUsers,filteredUsers:FilteredUsers, users:Users} = props;
-  
-  const dropdownRef : any = React.useRef();
+const SearchBar = (props: ISearchBarProps) => {
+  const { onClickItem, onClickCross, onChangeInput, handleBackspace, addedUsers: AddedUsers, filteredUsers: FilteredUsers, users: Users } = props;
 
-  React.useEffect(()=>{
+  const dropdownRef: any = React.useRef();
+
+  React.useEffect(() => {
     const dropdown = dropdownRef.current;
     dropdown.style.display = "none"
-  },[])
+  }, [])
   return (
     <div>
       <div id='bar'>
         <div id='sub-bar'>
           {AddedUsers && AddedUsers.map((User) => <Chip onClickCross={onClickCross} user={User} />)}
-      
+
           <div id='invisibile-input-box'>
-            <input 
-            onBlur={(e) => {
-              e.preventDefault()
-              const dropdown = dropdownRef.current;
-              dropdown.style.display = "none"
-            }} 
-            onFocus={() => {
-              const dropdown = dropdownRef.current;
-              dropdown.style.display = "block"
-            }} 
-            id='invisible-input' 
-            placeholder={(Users.length>0)?'Add new user...':''} 
-            type='text' 
-            onChange={onChangeInput} 
+            <input
+              onBlur={(e) => {
+                e.preventDefault()
+                const dropdown = dropdownRef.current;
+                dropdown.style.display = "none"
+              }}
+              onFocus={() => {
+                const dropdown = dropdownRef.current;
+                dropdown.style.display = "block"
+              }}
+              id='invisible-input'
+              placeholder={(Users.length > 0) ? 'Add new user...' : ''}
+              type='text'
+              onChange={onChangeInput}
+              onKeyDown={handleBackspace}
             />
-          <div id='search-box-holder' ref={dropdownRef}>
-            <SearchBox 
-            items={FilteredUsers} 
-            onClickItem = {onClickItem}
-            />
-          </div>
+            <div id='search-box-holder' ref={dropdownRef}>
+              <SearchBox
+                items={FilteredUsers}
+                onClickItem={onClickItem}
+              />
+            </div>
           </div>
         </div>
       </div>
