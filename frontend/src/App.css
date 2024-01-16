@@ -19,9 +19,8 @@ html,body{
 #bar{
   width: 100%;
   border-bottom: 2px solid blue;
-  height: 3rem;
+
   padding: 0.5rem;
-  
 }
 
 #sub-bar{
@@ -30,6 +29,7 @@ html,body{
   width: fit-content;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   position: relative;
 }
@@ -68,16 +68,15 @@ html,body{
   display:flex;
   flex-direction: row;
   padding: 0.25rem 0.75rem 0.25rem 0.25rem;
-  width: 10rem;
-
+  min-width: 9rem;
   background-color: rgb(201, 193, 193,0.4);
   border-radius: 2rem;
 }
 
 #search-box-holder{
-  position: relative;
-  top: 8.95rem;
-  right: 11.3rem;
+  position: absolute;
+   top: 2.5rem;
+  /* right: 11.3rem;  */
 }
 
 
@@ -152,6 +151,7 @@ html,body{
   height: 2rem;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 #invisible-input{
@@ -159,4 +159,7 @@ html,body{
   border:none;
   font-weight: 500;
   font-size:13px;
+}
+
+#no-user-div{
 }

@@ -63,7 +63,8 @@ function App() {
       onClickCross = {onClickCross}
       onChangeInput={onChangeInput} 
       addedUsers={addedUsers} 
-      filteredUsers={filteredUsers} />
+      filteredUsers={filteredUsers}
+      users = {Users} />
     </div>
   );
 }
