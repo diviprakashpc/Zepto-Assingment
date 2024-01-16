@@ -1,12 +1,21 @@
 import React from 'react'
-import Chip from './Chip'
-import SearchBox from './SearchBox'
+import Chip from './Chip.tsx'
+import SearchBox from './SearchBox.tsx'
+import { IUser } from '../interfaces';
 
+interface ISearchBarProps{
+  onClickItem : Function;
+  onClickCross : Function;
+  onChangeInput: Function;
+  addedUsers : IUser[];
+  filteredUsers:IUser[];
+  users:IUser[];
+}
 
-const SearchBar = (props) => {
+const SearchBar = (props : ISearchBarProps) => {
   const {onClickItem, onClickCross, onChangeInput, addedUsers:AddedUsers,filteredUsers:FilteredUsers, users:Users} = props;
   
-  const dropdownRef = React.useRef();
+  const dropdownRef : any = React.useRef();
 
   React.useEffect(()=>{
     const dropdown = dropdownRef.current;

@@ -1,7 +1,13 @@
 import React from 'react'
-import SearchItem from './SearchItem'
+import SearchItem from './SearchItem.tsx'
+import { IUser } from '../interfaces';
 
-const SearchBox = (props) => {
+interface ISearchBox{
+  items : IUser[];
+  onClickItem : Function;
+}
+
+const SearchBox = (props:ISearchBox) => {
   const items = props.items || [];
   const onClickItem = props.onClickItem
 

@@ -1,7 +1,13 @@
 import React from 'react'
+import { IUser } from '../interfaces';
 
-const SearchItem = (props) => {
-  const { item = [], onClickItem } = props;
+interface ISearchItem{
+  item : IUser;
+  onClickItem : Function
+}
+
+const SearchItem = (props:ISearchItem) => {
+  const { item , onClickItem } = props;
   const { name, email, id } = item;
   return (
     <div>

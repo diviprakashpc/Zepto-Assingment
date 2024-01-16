@@ -1,12 +1,13 @@
 import React from 'react'
 import './App.css';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar.tsx';
 import APIResponse from './sampleData'
-import { getFilteredArray } from './helper';
+import { getFilteredArray } from './helper.ts';
+import { IUser } from './interfaces';
 function App() {
-  const [addedUsers, setAddedUsers] = React.useState([]);;
-  const [Users, setUsers] = React.useState([]);
-  const [filteredUsers, setFilteredUsers] = React.useState([]);
+  const [addedUsers, setAddedUsers] = React.useState<IUser[]>([]);;
+  const [Users, setUsers] = React.useState<IUser[]>([]);
+  const [filteredUsers, setFilteredUsers] = React.useState<IUser[]>([]);
   function fetchUsers() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -14,10 +15,10 @@ function App() {
       }, 1000)
     })
   }
-  const onClickCross = (id) => {
-    const user = addedUsers.find((user)=>user.id===id);
-    const newAddedUsers = addedUsers.filter((user)=>user.id!==id)
-    const newUsers = Users;
+  const onClickCross = (id:number) => {
+    const user : any = (addedUsers && addedUsers?.find((user:IUser)=>user.id===id));
+    const newAddedUsers : IUser[] = addedUsers.filter((user:IUser)=>user.id!==id)
+    const newUsers : IUser[] = Users;
     newUsers.push(user);
     if(newAddedUsers){
       setAddedUsers(newAddedUsers)
@@ -25,11 +26,11 @@ function App() {
       setFilteredUsers(newUsers)
     }
   }
-  const onClickItem = (id) => {
+  const onClickItem = (id:number) => {
 
-    const user = Users.find((user)=>user.id===id);
-    const newUsers = Users.filter((user)=>user.id!==id) 
-    const newAddedUsers = addedUsers;
+    const user : any | undefined = Users.find((user:IUser)=>user.id===id);
+    const newUsers : IUser[] = Users.filter((user:IUser)=>user.id!==id) 
+    const newAddedUsers:IUser[] = addedUsers;
     newAddedUsers.push(user);
     if(newUsers){
       setAddedUsers(newAddedUsers)
@@ -37,9 +38,9 @@ function App() {
       setFilteredUsers(newUsers)
     }
   }
-  const onChangeInput = (e) => {
+  const onChangeInput = (e:any) => {
     e.preventDefault();
-    const {value} = e.target;
+    const {value} = e.currentTarget;
     let enteredValue = value.trim();
     if(enteredValue!=="") {
       const filteredArray = getFilteredArray(Users,value);
@@ -49,7 +50,7 @@ function App() {
     }
   }
   React.useEffect(() => {
-    fetchUsers().then((res) => {
+    fetchUsers().then((res:any) => {
       setUsers(res);
       setFilteredUsers(res);
     })
